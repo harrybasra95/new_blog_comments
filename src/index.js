@@ -2,9 +2,14 @@ import express from 'express'
 
 const app = express()
 
-// Parser config for POST requests
+// Parsing config for requests
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+// EJS files config
+app.set('view engine', 'ejs')
+app.set('views', './src/views')
+app.use(express.static(__dirname + '/public'))
 
 app.listen(3000, () => {
     console.log('listening on port 3000')
