@@ -11,6 +11,10 @@ app.set('view engine', 'ejs')
 app.set('views', './src/views')
 app.use(express.static(__dirname + '/public'))
 
+app.get('/', (req, res) => {
+    res.render('index')
+})
+
 app.listen(3000, () => {
     console.log('listening on port 3000')
 })
