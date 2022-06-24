@@ -1,5 +1,6 @@
 import 'dotenv/config'
 import express from 'express'
+import sequelize from './models'
 
 const app = express()
 
@@ -16,6 +17,15 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
-app.listen(3000, () => {
-    console.log('listening on port 3000')
-})
+sequelize
+    .authenticate()
+    .then(() => {
+        console.log('Database connection successfully established')
+        app.listen(3001, () => {
+            console.log('listening on port 3000')
+        })
+    })
+    .catch((err) => {
+        console.log('Database connection error')
+        console.log(err)
+    })
